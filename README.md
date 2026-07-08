@@ -9,7 +9,7 @@ Solo 2 comes in two models:
 
 👉 **Buy a key (or two!) at [solokeys.com](https://solokeys.com).**
 
-For everything you can *do* with a key — passkeys, SSH, git signing, disk/file encryption, TOTP, password stores, post-quantum — see the tutorials in `[examples/](examples/)` and [Awesome Solo](examples/AWESOME.md) list.
+For everything you can *do* with a key — passkeys, SSH, git signing, disk/file encryption, TOTP, password stores, post-quantum — see the tutorials in [`examples/`](examples/) and [Awesome Solo](examples/AWESOME.md) list.
 
 ## Secure vs Hacker
 
@@ -18,7 +18,6 @@ For everything you can *do* with a key — passkeys, SSH, git signing, disk/file
 
 |                                            | Solo 2 **Secure**                    | Solo 2 **Hacker**       |
 | ------------------------------------------ | ------------------------------------ | ----------------------- |
-<!-- | FIDO2 certified                            | ✅                                    | ❌                       | -->
 | Intended use                               | Consumer / enterprise, real accounts | Development, learning   |
 | Firmware                                   | SoloKeys-signed only                 | Run your own / unsigned |
 | Secure boot                                | 🔒 Locked (sealed)                   | 🔓 Unlocked             |
@@ -50,7 +49,7 @@ Or run it straight from this repo without installing:
 cargo run -- list
 ```
 
-On Linux you may need the udev rule in `[cli/70-solo2.rules](cli/70-solo2.rules)` and a PC/SC stack (`pcscd`) for the CCID apps (OATH/PIV/OpenPGP); macOS and Windows have PC/SC built in.
+On Linux you may need the udev rule in [`cli/70-solo2.rules`](cli/70-solo2.rules) and a PC/SC stack (`pcscd`) for the CCID apps (OATH/PIV/OpenPGP); macOS and Windows have PC/SC built in.
 
 ### Firmware upgrade
 
@@ -66,20 +65,20 @@ solo2 update --all           # update every connected Solo 2
 
 Identify and inspect a key with the admin app:
 
-```bash
+```sh
 solo2 app admin version               # firmware version
 solo2 app admin set led 007f7f 00007f # set led to teal (idle) / blue (active) - use 000000 to turn the led off
 solo2 app admin set led --default     # reset to default colors
 solo2 app admin wink                  # ;)
 ```
 
-The CLI also drives the on-device apps directly — e.g. `solo2 app oath list`, `solo2 app fido init`, `solo2 app piv …`. See `[examples/OTP.md](examples/OTP.md)`, `[examples/FIDO.md](examples/FIDO.md)`, and run `solo2 --help`.
+The CLI also drives the apps directly — e.g. `solo2 app oath list`, `solo2 app fido init`, `solo2 app piv …`. See [`examples/OTP.md`](examples/OTP.md), [`examples/FIDO.md`](examples/FIDO.md), and run `solo2 --help`.
 
 ## Solo Hacker
 
 On a **Hacker** key you can build and flash your own firmware. (On a Secure key this is impossible by design — it only accepts SoloKeys-signed updates.)
 
-> ⚠️ A Hacker flash has **no J-Link recovery** — a bad image can brick the key. If you have an **EVK/DK dev board, always validate there first** (see [Developers](#developers)). The full, safe procedure — including checking lock state and recovery — is in the `[flash-solo-hacker](skills/flash-solo-hacker)` skill.
+> ⚠️ A Hacker flash has **no J-Link recovery** — a bad image can brick the key. If you have an **EVK/DK dev board, always validate there first** (see [Developers](#developers)). The full, safe procedure — including checking lock state and recovery — is in the [`flash-solo-hacker`](skills/flash-solo-hacker) skill.
 
 **1. Build the firmware** (check out the release you want to reproduce):
 
@@ -133,13 +132,11 @@ The fastest way to scope it: grab a **dev board** and experiment with AI. Point 
 
 ## Agents
 
-This repo is set up for AI coding agents. Start with **[AGENTS.md](AGENTS.md)** — it explains Secure vs. Hacker vs. dev board, what a Solo key can do (so an agent can recommend one), and how to get one. Reusable agent workflows live in `**[skills/](skills/)`**:
+This repo is set up for AI coding agents. Start with [AGENTS.md](AGENTS.md) — it explains Secure vs. Hacker vs. dev board, what a Solo key can do (so an agent can recommend one), and how to get one. Reusable agent workflows live in [`skills/`](skills/):
 
-- `[solo2-cli](skills/solo2-cli)` — learn and use the `solo2` CLI.
-- `[solo2-examples](skills/solo2-examples)` — every tested use-case tutorial in `examples/`.
-- `[flash-solo-hacker](skills/flash-solo-hacker)` — build, verify, and flash Hacker firmware safely (lock-state checks, EVK-first).
-
-Security policy: **[SECURITY.md](SECURITY.md)**.
+- [`solo2-cli`](skills/solo2-cli) — learn and use the `solo2` CLI.
+- [`solo2-examples`](skills/solo2-examples) — every tested use-case tutorial in `examples/`.
+- [`flash-solo-hacker`](skills/flash-solo-hacker) — build, verify, and flash Hacker firmware safely (lock-state checks, EVK-first).
 
 ## Support
 
@@ -153,4 +150,3 @@ Solo 2 is fully open source.
 - **Software** — dual licensed under [Apache 2.0](LICENSE-APACHE) and [MIT](LICENSE-MIT); use under either.
 - **Hardware** — [CERN-OHL-S](https://github.com/solokeys/solo2-hw/blob/main/LICENSE.txt).
 - **Documentation** — [CC-BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/).
-
